@@ -1,0 +1,48 @@
+///////////////////////////////////////////////////
+.stack
+// int maxCount, sum, count, loop1; //stackSize 16.
+// char prtBuffer[6]; // 12 // 4바이트 단위로 끊어야 하니까 28바이트로 메모리 잡음. (justification)
+size = 28
+///////////////////////////////////////////////////
+
+.code
+// int maxCount = 10;
+LDV 200
+STA 0
+// int sum = 0;
+LDV 0
+STA 4
+// int count = 0;
+LDV 0
+STA 8
+
+// String prtBuffer = "test";
+// LDV "test"
+// STA 12
+// syso(prtBuffer);
+// LDA 12
+// INT 0
+
+
+:loop
+// sum += count
+LDA 8
+ADA 4
+STA 4
+
+// if(maxCount > count) go to :loop
+LDA 8
+CMP 0
+
+// count += 1;
+LDA 8
+ADV 1
+STA 8
+
+JGZ loop
+
+LDA 4
+INT 0
+
+//exit
+Halt
